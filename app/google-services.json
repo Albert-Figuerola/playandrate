@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "635552197317",
+    "project_id": "play-and-rate-app",
+    "storage_bucket": "play-and-rate-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635552197317:android:81437b1f96d6963d629eac",
+        "android_client_info": {
+          "package_name": "com.albanda.playandrate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr1qkxvF2q14HpAxh78LC8Bs1o1eNtotE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
