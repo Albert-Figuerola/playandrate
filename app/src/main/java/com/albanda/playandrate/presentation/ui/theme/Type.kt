@@ -2,9 +2,11 @@ package com.albanda.playandrate.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.albanda.playandrate.R
 
 // Set of Material typography styles to start with
 val Typography = Typography(
@@ -31,4 +33,22 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
+)
+
+val Orbitron_Regular = FontFamily(
+    Font(
+        R.font.orbitron_regular, FontWeight.Normal
+    )
+)
+
+val Orbitron_Medium = FontFamily(
+    Font(
+        R.font.orbitron_medium, FontWeight.Normal
+    )
+)
+
+val Inter_Regular = FontFamily(
+    Font(
+        R.font.inter_regular, FontWeight.Normal
+    )
 )

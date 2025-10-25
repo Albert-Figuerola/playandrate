@@ -82,6 +82,9 @@ dependencies {
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.2.0")
     implementation("commons-io:commons-io:2.19.0")
 
+    // Added for lottie
+    implementation("com.airbnb.android:lottie-compose:6.6.10")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
