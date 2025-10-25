@@ -8,6 +8,7 @@ import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.albanda.playandrate.presentation.screens.create_post.CreatePostScreen
 import com.albanda.playandrate.presentation.screens.detail_post.DetailPostScreen
+import com.albanda.playandrate.presentation.screens.login.LoginScreen
 import com.albanda.playandrate.presentation.screens.profile_update.ProfileEditScreen
 import com.albanda.playandrate.presentation.screens.update_post.UpdatePostScreen
 
@@ -16,6 +17,14 @@ fun NavGraphBuilder.detailsNavGraph(navHostController: NavHostController) {
         route = Graph.DETAILS,
         startDestination = DetailsScreen.ProfileUpdate.route
     ) {
+        composable(route = DetailsScreen.Login.route) {
+            LoginScreen(navHostController)
+        }
+
+        composable(route = DetailsScreen.CreatePost.route) {
+            CreatePostScreen(navHostController)
+        }
+
         composable(route = DetailsScreen.CreatePost.route) {
             CreatePostScreen(navHostController)
         }
@@ -57,6 +66,7 @@ fun NavGraphBuilder.detailsNavGraph(navHostController: NavHostController) {
 }
 
 sealed class DetailsScreen(val route: String) {
+    object Login: DetailsScreen("login")
     object CreatePost: DetailsScreen("post/new")
     object ProfileUpdate: DetailsScreen("profile/edit/{user}") {
         fun passUser(user: String) = "profile/edit/$user"

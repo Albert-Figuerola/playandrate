@@ -13,7 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
+import com.albanda.playandrate.presentation.screens.login.components.LoginBottomBar
 import com.albanda.playandrate.presentation.ui.theme.Red500
 
 @Composable
