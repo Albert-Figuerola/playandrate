@@ -37,7 +37,7 @@ fun SignupScreen(navHostController: NavHostController) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PreviewSignupScreen() {
-    PlayAndRateTheme(darkTheme = true) {
+    PlayAndRateTheme() {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background

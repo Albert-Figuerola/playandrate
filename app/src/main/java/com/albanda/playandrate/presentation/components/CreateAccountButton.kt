@@ -21,7 +21,7 @@ import com.albanda.playandrate.presentation.ui.theme.White
 
 @Composable
 fun CreateAccountButton(
-    
+    onClick: () -> Unit
 ) {
     Column() {
         Button(
@@ -30,7 +30,7 @@ fun CreateAccountButton(
             colors = ButtonDefaults.buttonColors(containerColor = White),
             shape = RoundedCornerShape(12.dp),
             border = BorderStroke(1.dp, Orange500),
-            onClick = { }
+            onClick = { onClick() }
         ) {
             Text(
                 text = "Crear cuenta",
@@ -45,5 +45,5 @@ fun CreateAccountButton(
 @Preview(showBackground = true)
 @Composable
 fun PreviewCreateAccountButton() {
-    CreateAccountButton()
+    CreateAccountButton(onClick = {})
 }

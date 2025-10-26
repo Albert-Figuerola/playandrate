@@ -19,7 +19,7 @@ import com.albanda.playandrate.presentation.ui.theme.Orbitron_Regular
 
 @Composable
 fun LoginButton(
-    
+    onClick: () -> Unit
 ) {
     Column() {
         Button(
@@ -27,7 +27,7 @@ fun LoginButton(
                 .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = Orange500),
             shape = RoundedCornerShape(12.dp),
-            onClick = { }
+            onClick = { onClick() }
         ) {
             Text(
                 text = "Iniciar sesión",
@@ -42,5 +42,5 @@ fun LoginButton(
 @Preview(showBackground = true)
 @Composable
 fun PreviewLoginButton() {
-    LoginButton()
+    LoginButton(onClick = {})
 }
