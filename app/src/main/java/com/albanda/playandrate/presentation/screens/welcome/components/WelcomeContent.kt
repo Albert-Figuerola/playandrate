@@ -41,7 +41,7 @@ fun WelcomeContent(
         Image(
             modifier = Modifier
                 .height(140.dp)
-                .align(Alignment.Start),
+                .padding(12.dp),
             painter = painterResource(id = R.drawable.play_and_rate_logo),
             contentDescription = "Logo"
         )
