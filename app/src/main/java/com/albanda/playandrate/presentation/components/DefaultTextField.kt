@@ -28,7 +28,7 @@ fun DefaultTextFiled(
     hideText: Boolean = false,
     errorMsg: String = ""
 ) {
-    Column() {
+    Column {
         OutlinedTextField(
             modifier = modifier,
             value = value,

@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,6 +16,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.albanda.playandrate.presentation.components.DefaultTextFiled
 import com.albanda.playandrate.presentation.components.LoginButton
 import com.albanda.playandrate.presentation.components.TextFiled
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Medium
@@ -29,7 +32,7 @@ fun LoginContent(
     Column(
         modifier = modifier
             .padding(12.dp),
-        verticalArrangement = Arrangement.Top
+//        verticalArrangement = Arrangement.Top
 //        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -41,17 +44,28 @@ fun LoginContent(
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        TextFiled(
-            modifier = Modifier
-                .fillMaxWidth(),
-            value = "", //state.email,
-            onValueChange = {  }, // { loginViewModel.onEmailInput(it) },
-            label = "Correo electrónico*",
+//        TextFiled(
+//            modifier = Modifier
+//                .fillMaxWidth(),
+//            value = "", //state.email,
+//            onValueChange = {  }, // { loginViewModel.onEmailInput(it) },
+//            label = "Correo electrónico*",
+//            keyboardType = KeyboardType.Email,
+//            errorMsg = "",  // loginViewModel.emailErrMsg,
+//            validateField = {
+//                //loginViewModel.validateEmail()
+//            }
+//        )
+
+        DefaultTextFiled(
+            modifier = Modifier.padding(top = 0.dp),
+            value = "",
+            onValueChange = {  },
+            label = "Correo electrónico",
+            leadingIcon = Icons.Default.Email,
             keyboardType = KeyboardType.Email,
-            errorMsg = "",  // loginViewModel.emailErrMsg,
-            validateField = {
-                //loginViewModel.validateEmail()
-            }
+            errorMsg = "",
+            validateField = {  }
         )
 
         Spacer(modifier = Modifier.height(40.dp))

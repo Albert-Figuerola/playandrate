@@ -13,6 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.albanda.playandrate.presentation.ui.theme.Red500
+import com.albanda.playandrate.presentation.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -30,7 +32,7 @@ fun TopBar(
                 )
             }
         },
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White),
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = White),
         navigationIcon = {
             if (upAvailable) {
                 IconButton(onClick = { navHostController?.popBackStack() }) {

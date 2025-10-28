@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -15,6 +16,7 @@ import com.albanda.playandrate.presentation.components.TopBar
 import com.albanda.playandrate.presentation.screens.login.components.Login
 import com.albanda.playandrate.presentation.screens.login.components.LoginBottomBar
 import com.albanda.playandrate.presentation.screens.login.components.LoginContent
+import com.albanda.playandrate.presentation.screens.welcome.components.WelcomeContent
 import com.albanda.playandrate.presentation.ui.theme.PlayAndRateTheme
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -36,9 +38,6 @@ fun LoginScreen(navHostController: NavHostController) {
             LoginBottomBar(navHostController)
         }
     )
-//    { innerPadding ->
-//        LoginContent(modifier = Modifier.padding(innerPadding))
-//    }
     Login(navHostController = navHostController)
 }
 
