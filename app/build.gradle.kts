@@ -85,6 +85,9 @@ dependencies {
     // Added for lottie
     implementation("com.airbnb.android:lottie-compose:6.6.10")
 
+    // Add to change automatically the status bar color
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.36.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

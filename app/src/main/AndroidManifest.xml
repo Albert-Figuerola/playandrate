@@ -25,6 +25,7 @@
         android:theme="@style/Theme.PlayAndRate">
         <activity
             android:name=".presentation.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PlayAndRate">
