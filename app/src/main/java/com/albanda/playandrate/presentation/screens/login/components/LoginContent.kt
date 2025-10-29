@@ -69,7 +69,7 @@ fun LoginContent(
             modifier = Modifier
                 .fillMaxWidth(),
             value = state.password,
-            onValueChange = { loginViewModel.onPasswordInput(it) }, // { loginViewModel.onEmailInput(it) },
+            onValueChange = { loginViewModel.onPasswordInput(it) },
             label = "Contraseña*",
             keyboardType = KeyboardType.Email,
             errorMsg = loginViewModel.emailErrMsg,
@@ -83,7 +83,6 @@ fun LoginContent(
         LoginButton(
             onClick = {
                 loginViewModel.login()
-                navHostController.navigate(route = AuthScreen.Login.route)
             }
         )
     }

@@ -17,6 +17,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.albanda.playandrate.presentation.navigation.RootNavGraph
 import com.albanda.playandrate.presentation.screens.login.LoginScreen
+import com.albanda.playandrate.presentation.screens.welcome.WelcomeScreen
 import com.albanda.playandrate.presentation.ui.theme.PlayAndRateTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +47,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     navHostController = rememberNavController()
+                    WelcomeScreen(navHostController)
                     RootNavGraph(navHostController = navHostController)
                 }
             }
