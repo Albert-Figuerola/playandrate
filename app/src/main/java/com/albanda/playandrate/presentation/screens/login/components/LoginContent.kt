@@ -8,11 +8,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,6 +28,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
+import com.albanda.playandrate.R
+import com.albanda.playandrate.presentation.components.DefaultButton
 import com.albanda.playandrate.presentation.components.DefaultTextFiled
 import com.albanda.playandrate.presentation.components.LoginButton
 import com.albanda.playandrate.presentation.components.PasswordTextFiled
@@ -53,7 +63,7 @@ fun LoginContent(
         TextFiled(
             modifier = Modifier
                 .fillMaxWidth(),
-            value = state.email, //state.email,
+            value = state.email,
             onValueChange = { loginViewModel.onEmailInput(it) },
             label = "Correo electrónico*",
             keyboardType = KeyboardType.Email,
@@ -65,12 +75,31 @@ fun LoginContent(
 
         Spacer(modifier = Modifier.height(10.dp))
 
+        var hideText by remember { mutableStateOf(true) }
+        val trailing: @Composable () -> Unit = {
+            val image = if (hideText) {
+                R.drawable.visibility_off
+            } else {
+                R.drawable.visibility
+            }
+
+            IconButton(onClick = { hideText = !hideText }) {
+                Icon(
+                    painter = painterResource(id = image),
+                    contentDescription = "",
+                    tint = Color.Gray
+                )
+            }
+        }
+
         PasswordTextFiled(
             modifier = Modifier
                 .fillMaxWidth(),
             value = state.password,
-            onValueChange = { loginViewModel.onPasswordInput(it) }, // { loginViewModel.onEmailInput(it) },
+            onValueChange = { loginViewModel.onPasswordInput(it) },
             label = "Contraseña*",
+            trailingIcon = trailing,
+            hideText = hideText,
             keyboardType = KeyboardType.Email,
             errorMsg = loginViewModel.emailErrMsg,
             validateField = {
@@ -81,10 +110,21 @@ fun LoginContent(
         Spacer(modifier = Modifier.height(60.dp))
 
         LoginButton(
+            enable = loginViewModel.isEnabledLoginButton,
             onClick = {
                 loginViewModel.login()
-                navHostController.navigate(route = AuthScreen.Login.route)
             }
+        )
+
+        DefaultButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 32.dp),
+            onClick = {
+                loginViewModel.login()
+            },
+            text = "INICIAR SESIÓN",
+            enable = loginViewModel.isEnabledLoginButton
         )
     }
 

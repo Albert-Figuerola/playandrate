@@ -58,7 +58,8 @@ fun TextFiled(
             unfocusedBorderColor = Color.Gray,
             cursorColor = Orange500,
             focusedLabelColor = Orange500
-        )
+        ),
+        singleLine = true
     )
 
     if (errorMsg != "") {
