@@ -32,7 +32,7 @@ fun LoginScreen(navHostController: NavHostController) {
             )
         },
         content = { innerPadding ->
-            LoginContent(modifier = Modifier.padding(innerPadding))
+            LoginContent(modifier = Modifier.padding(innerPadding), navHostController)
         },
         bottomBar = {
             LoginBottomBar(navHostController)
