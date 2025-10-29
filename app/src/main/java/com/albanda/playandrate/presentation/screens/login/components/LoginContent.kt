@@ -1,14 +1,10 @@
 package com.albanda.playandrate.presentation.screens.login.components
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -19,29 +15,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHost
-import androidx.navigation.NavHostController
 import com.albanda.playandrate.R
-import com.albanda.playandrate.presentation.components.DefaultButton
-import com.albanda.playandrate.presentation.components.DefaultTextFiled
 import com.albanda.playandrate.presentation.components.LoginButton
 import com.albanda.playandrate.presentation.components.PasswordTextFiled
 import com.albanda.playandrate.presentation.components.TextFiled
-import com.albanda.playandrate.presentation.navigation.AuthScreen
 import com.albanda.playandrate.presentation.screens.login.LoginViewModel
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Medium
 
 @Composable
 fun LoginContent(
     modifier: Modifier = Modifier,
-    navHostController: NavHostController,
     loginViewModel: LoginViewModel = hiltViewModel()
 ) {
 
@@ -101,7 +90,7 @@ fun LoginContent(
             trailingIcon = trailing,
             hideText = hideText,
             keyboardType = KeyboardType.Email,
-            errorMsg = loginViewModel.emailErrMsg,
+            errorMsg = loginViewModel.passwordErrMsg,
             validateField = {
                 loginViewModel.validatePassword()
             }
@@ -115,17 +104,6 @@ fun LoginContent(
                 loginViewModel.login()
             }
         )
-
-        DefaultButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 32.dp),
-            onClick = {
-                loginViewModel.login()
-            },
-            text = "INICIAR SESIÓN",
-            enable = loginViewModel.isEnabledLoginButton
-        )
     }
 
 }
@@ -133,5 +111,5 @@ fun LoginContent(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PreviewLoginContent() {
-    LoginContent(navHostController = NavHostController(LocalContext.current))
+    LoginContent()
 }

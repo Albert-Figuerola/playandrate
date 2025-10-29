@@ -34,7 +34,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import com.albanda.playandrate.R
-import com.albanda.playandrate.presentation.MainActivity
+import com.albanda.playandrate.presentation.main.MainActivity
 import com.albanda.playandrate.presentation.components.DefaultButton
 import com.albanda.playandrate.presentation.navigation.DetailsScreen
 import com.albanda.playandrate.presentation.screens.profile.ProfileViewModel
