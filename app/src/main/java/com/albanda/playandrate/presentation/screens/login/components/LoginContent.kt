@@ -115,17 +115,6 @@ fun LoginContent(
                 loginViewModel.login()
             }
         )
-
-        DefaultButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 32.dp),
-            onClick = {
-                loginViewModel.login()
-            },
-            text = "INICIAR SESIÓN",
-            enable = loginViewModel.isEnabledLoginButton
-        )
     }
 
 }
