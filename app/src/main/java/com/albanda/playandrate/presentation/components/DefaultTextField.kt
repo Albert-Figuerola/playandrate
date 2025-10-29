@@ -2,6 +2,8 @@ package com.albanda.playandrate.presentation.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -12,6 +14,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.albanda.playandrate.presentation.ui.theme.Red700
 
@@ -58,4 +61,17 @@ fun DefaultTextFiled(
         }
 
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewDefaultTextFiled() {
+    DefaultTextFiled(
+        modifier = Modifier,
+        value = "",
+        onValueChange = {},
+        label = "Correo electrónico*",
+        leadingIcon = Icons.Default.Email,
+        keyboardType = KeyboardType.Email
+    )
 }

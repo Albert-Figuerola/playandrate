@@ -27,7 +27,7 @@ import com.albanda.playandrate.presentation.ui.theme.Orange500
 import com.albanda.playandrate.presentation.ui.theme.Red700
 
 @Composable
-fun TextFiled(
+fun PasswordTextFiled(
     modifier: Modifier,
     value: String,
     onValueChange: (value: String) -> Unit,
@@ -73,6 +73,6 @@ fun TextFiled(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewTextFiled() {
-    TextFiled(modifier = Modifier, value = "", onValueChange = {}, label = "Correo electrónico*")
+fun PasswordTextFiled() {
+    PasswordTextFiled(modifier = Modifier, value = "", onValueChange = {}, label = "Contraseña*")
 }
