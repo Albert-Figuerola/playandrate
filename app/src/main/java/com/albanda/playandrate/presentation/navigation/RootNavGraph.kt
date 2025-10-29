@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.albanda.playandrate.presentation.screens.home.HomeScreen
 import com.albanda.playandrate.presentation.screens.welcome.WelcomeScreen
 
 @Composable
@@ -15,8 +16,8 @@ fun RootNavGraph(navHostController: NavHostController) {
         startDestination = Graph.AUTHENTICATION
     ) {
         authNavGraph(navHostController = navHostController)
-        composable(route = Graph.WELCOME) {
-            WelcomeScreen()
+        composable(route = Graph.HOME) {
+            HomeScreen()
         }
     }
 
