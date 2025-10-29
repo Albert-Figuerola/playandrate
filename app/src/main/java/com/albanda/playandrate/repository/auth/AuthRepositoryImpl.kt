@@ -12,6 +12,9 @@ class AuthRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth
 ): AuthRepository {
     override val currentUser: FirebaseUser? get() = firebaseAuth.currentUser
+    
+    override val isUserAuthenticated: Boolean
+        get() = firebaseAuth.currentUser != null
 
     override suspend fun login(email: String, password: String): Response<FirebaseUser> {
         return try {

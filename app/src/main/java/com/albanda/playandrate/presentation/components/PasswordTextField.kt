@@ -1,25 +1,16 @@
 package com.albanda.playandrate.presentation.components
 
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.OutlinedTextFieldDefaults.colors
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldColors
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.albanda.playandrate.presentation.ui.theme.Inter_Regular
@@ -33,7 +24,9 @@ fun PasswordTextFiled(
     onValueChange: (value: String) -> Unit,
     validateField: () -> Unit = {},
     label: String,
+    trailingIcon: (@Composable (() -> Unit)),
     keyboardType: KeyboardType = KeyboardType.Text,
+    hideText: Boolean = true,
     errorMsg: String = ""
 ) {
 
@@ -58,7 +51,10 @@ fun PasswordTextFiled(
             unfocusedBorderColor = Color.Gray,
             cursorColor = Orange500,
             focusedLabelColor = Orange500
-        )
+        ),
+        trailingIcon = trailingIcon,
+        singleLine = true,
+        visualTransformation = if (hideText) PasswordVisualTransformation() else VisualTransformation.None
     )
 
     if (errorMsg != "") {
@@ -69,10 +65,4 @@ fun PasswordTextFiled(
         )
     }
 
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PasswordTextFiled() {
-    PasswordTextFiled(modifier = Modifier, value = "", onValueChange = {}, label = "Contraseña*")
 }

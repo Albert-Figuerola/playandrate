@@ -19,6 +19,7 @@ import com.albanda.playandrate.presentation.ui.theme.Orbitron_Regular
 
 @Composable
 fun LoginButton(
+    enable: Boolean = true,
     onClick: () -> Unit
 ) {
     Column() {
@@ -27,6 +28,7 @@ fun LoginButton(
                 .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = Orange500),
             shape = RoundedCornerShape(12.dp),
+            enabled = enable,
             onClick = { onClick() }
         ) {
             Text(

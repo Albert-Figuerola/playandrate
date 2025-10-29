@@ -24,10 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlayAndRate">
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.main.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.PlayAndRate">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
