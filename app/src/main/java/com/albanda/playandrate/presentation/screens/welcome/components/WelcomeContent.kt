@@ -57,7 +57,6 @@ fun WelcomeContent(
         ) {
             WelcomeLottie()
 
-
             Spacer(modifier = Modifier.width(20.dp))
 
             Image(
