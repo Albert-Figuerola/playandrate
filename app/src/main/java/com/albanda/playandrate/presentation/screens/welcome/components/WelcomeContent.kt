@@ -55,13 +55,15 @@ fun WelcomeContent(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.Top
         ) {
-            Image(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .aspectRatio(1f),
-                painter = painterResource(id = R.drawable.controller),
-                contentDescription = "Controller"
-            )
+//            Image(
+//                modifier = Modifier
+//                    .fillMaxHeight()
+//                    .aspectRatio(1f),
+//                painter = painterResource(id = R.drawable.controller),
+//                contentDescription = "Controller"
+//            )
+            WelcomeLottie()
+
 
             Spacer(modifier = Modifier.width(20.dp))
 
