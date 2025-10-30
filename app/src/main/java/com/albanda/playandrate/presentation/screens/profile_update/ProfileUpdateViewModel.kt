@@ -7,11 +7,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.albanda.playandrate.presentation.utils.ComposeFileProvider
 import com.albanda.playandrate.domain.model.Response
 import com.albanda.playandrate.domain.model.User
 import com.albanda.playandrate.domain.usecase.user.UserUseCases
 import com.albanda.playandrate.presentation.screens.utils.AuthFormValidator
-import com.albanda.playandrate.presentation.utils.ComposeFileProvider
 import com.albanda.playandrate.presentation.utils.ResultingActivityHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext

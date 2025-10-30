@@ -20,6 +20,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.albanda.playandrate.presentation.navigation.RootNavGraph
 import com.albanda.playandrate.presentation.screens.login.LoginScreen
+import com.albanda.playandrate.presentation.ui.permissions.CameraPermissionHandler
 import com.albanda.playandrate.presentation.ui.theme.PlayAndRateTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,22 +37,24 @@ class MainActivity : ComponentActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         setContent {
-            val systemUiController = rememberSystemUiController()
-            val useDarkIcons = !isSystemInDarkTheme()
+            PlayAndRateTheme(darkTheme = false) {
+                val systemUiController = rememberSystemUiController()
+                val useDarkIcons = !isSystemInDarkTheme()
 
-            DisposableEffect(systemUiController, useDarkIcons) {
-                systemUiController.setSystemBarsColor(
-                    color = Color.Transparent,
-                    darkIcons = useDarkIcons
-                )
-                onDispose {}
-            }
+                DisposableEffect(systemUiController, useDarkIcons) {
+                    systemUiController.setSystemBarsColor(
+                        color = Color.Transparent,
+                        darkIcons = useDarkIcons
+                    )
+                    onDispose {}
+                }
 
-            PlayAndRateTheme(darkTheme = true) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    CameraPermissionHandler()
+
                     navHostController = rememberNavController()
                     val startDestination by mainViewModel.startDestination.collectAsState()
                     RootNavGraph(
