@@ -6,12 +6,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.albanda.playandrate.presentation.utils.ComposeFileProvider
 import com.albanda.playandrate.R
 import com.albanda.playandrate.domain.model.Post
 import com.albanda.playandrate.domain.model.Response
 import com.albanda.playandrate.domain.usecase.auth.AuthUseCases
 import com.albanda.playandrate.domain.usecase.post.PostUseCases
-import com.albanda.playandrate.presentation.utils.ComposeFileProvider
 import com.albanda.playandrate.presentation.utils.ResultingActivityHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext

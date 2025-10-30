@@ -6,12 +6,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.albanda.playandrate.presentation.utils.ComposeFileProvider
 import com.albanda.playandrate.domain.model.Response
 import com.albanda.playandrate.domain.model.User
 import com.albanda.playandrate.domain.usecase.auth.AuthUseCases
 import com.albanda.playandrate.domain.usecase.user.UserUseCases
 import com.albanda.playandrate.presentation.screens.utils.AuthFormValidator
-import com.albanda.playandrate.presentation.utils.ComposeFileProvider
 import com.albanda.playandrate.presentation.utils.ResultingActivityHandler
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -47,9 +47,6 @@ class SignupViewModel @Inject constructor(
     var isConfirmPasswordValid by mutableStateOf(false)
         private set
     var confirmPasswordErrMsg by mutableStateOf("")
-        private set
-
-    var updateResponse by mutableStateOf<Response<Boolean>?>(null)
         private set
 
     var saveImageResponse by mutableStateOf<Response<String>?>(null)
