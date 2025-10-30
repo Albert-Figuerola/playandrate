@@ -30,6 +30,7 @@ class ResultingActivityHandler {
             it.launch()
         }
     }
+
     suspend fun getContent(
         type: String,
         maxTry: Int = 10,
@@ -86,4 +87,5 @@ class ResultingActivityHandler {
             _callback.value?.invoke()
         }
     }
+
 }

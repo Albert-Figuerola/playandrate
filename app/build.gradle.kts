@@ -65,7 +65,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.56.1")
 
     // Added for Firebase Auth
-//    implementation(libs.firebase.auth)
+    implementation(libs.firebase.auth)
 
     // Added for Firebase Database
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))

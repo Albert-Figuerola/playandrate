@@ -4,5 +4,6 @@ data class SignupState(
     val username: String = "",
     val email: String = "",
     val password: String = "",
-    val confirmPassword: String = ""
+    val confirmPassword: String = "",
+    var image: String = ""
 )
