@@ -1,5 +1,6 @@
 package com.albanda.playandrate.presentation.screens.signup
 
+import android.content.Context
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,15 +11,20 @@ import com.albanda.playandrate.domain.model.User
 import com.albanda.playandrate.domain.usecase.auth.AuthUseCases
 import com.albanda.playandrate.domain.usecase.user.UserUseCases
 import com.albanda.playandrate.presentation.screens.utils.AuthFormValidator
+import com.albanda.playandrate.presentation.utils.ComposeFileProvider
+import com.albanda.playandrate.presentation.utils.ResultingActivityHandler
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import jakarta.inject.Inject
 import kotlinx.coroutines.launch
+import java.io.File
 
 @HiltViewModel
 class SignupViewModel @Inject constructor(
     private val authUseCases: AuthUseCases,
-    private val userUseCases: UserUseCases
+    private val userUseCases: UserUseCases,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
     var state by mutableStateOf(SignupState())
         private set
@@ -42,6 +48,15 @@ class SignupViewModel @Inject constructor(
         private set
     var confirmPasswordErrMsg by mutableStateOf("")
         private set
+
+    var updateResponse by mutableStateOf<Response<Boolean>?>(null)
+        private set
+
+    var saveImageResponse by mutableStateOf<Response<String>?>(null)
+        private set
+
+    var file: File? = null
+    val resultingActivityHandler = ResultingActivityHandler()
 
     var isEnabledLoginButton = false
 
@@ -121,4 +136,29 @@ class SignupViewModel @Inject constructor(
                 isUsernameValid &&
                 isConfirmPasswordValid
     }
+
+    fun saveImage() = viewModelScope.launch {
+        if (file != null) {
+            saveImageResponse = Response.Loading
+            val result = userUseCases.saveImage(file!!)
+            saveImageResponse = result
+        }
+    }
+
+    fun pickImage() = viewModelScope.launch {
+        val result = resultingActivityHandler.getContent("image/*")
+        if (result != null) {
+            file = ComposeFileProvider.createFileFromUri(context, result)
+            state = state.copy(image = result.toString())
+        }
+    }
+
+    fun takePhoto() = viewModelScope.launch {
+        val result = resultingActivityHandler.takePicturePreview()
+        if (result != null) {
+            state = state.copy(image = ComposeFileProvider.getPathFromBitmap(context, result))
+            file = File(state.image)
+        }
+    }
+
 }

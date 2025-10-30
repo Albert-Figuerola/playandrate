@@ -23,9 +23,9 @@
         android:roundIcon="@drawable/play_and_rate_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.PlayAndRate">
+
         <activity
             android:name=".presentation.main.MainActivity"
-            android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Theme.PlayAndRate">
             <intent-filter>
@@ -34,6 +34,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="com.albanda.playandrate.fileprovider"
+            android:name=".presentation.utils.ComposeFileProvider"
+            android:grantUriPermissions="true"
+            android:exported ="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path">
+            </meta-data>
+        </provider>
     </application>
 
 </manifest>
