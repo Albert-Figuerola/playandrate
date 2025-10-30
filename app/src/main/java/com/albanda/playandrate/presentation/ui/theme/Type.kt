@@ -47,6 +47,12 @@ val Orbitron_Medium = FontFamily(
     )
 )
 
+val Orbitron_Bold = FontFamily(
+    Font(
+        R.font.orbitron_bold, FontWeight.Bold
+    )
+)
+
 val Inter_Regular = FontFamily(
     Font(
         R.font.inter_regular, FontWeight.Normal

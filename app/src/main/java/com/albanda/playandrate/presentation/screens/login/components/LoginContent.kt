@@ -38,13 +38,13 @@ fun LoginContent(
 
     Column(
         modifier = modifier
-            .padding(12.dp)
+            .padding(16.dp)
     ) {
         Text(
             text = "Iniciar sesión",
             color = Color.Black,
             fontFamily = Orbitron_Medium,
-            fontSize = 20.sp
+            fontSize = 18.sp
         )
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -99,7 +99,7 @@ fun LoginContent(
         Spacer(modifier = Modifier.height(60.dp))
 
         LoginButton(
-            enable = loginViewModel.isEnabledLoginButton,
+            text ="Iniciar sesión",
             onClick = {
                 loginViewModel.login()
             }
