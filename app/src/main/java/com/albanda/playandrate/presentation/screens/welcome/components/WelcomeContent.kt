@@ -36,12 +36,12 @@ fun WelcomeContent(
 
     Column(
         modifier = Modifier
+            .padding(16.dp)
             .fillMaxWidth()
     ) {
         Image(
             modifier = Modifier
-                .height(140.dp)
-                .padding(12.dp),
+                .height(140.dp),
             painter = painterResource(id = R.drawable.play_and_rate_logo),
             contentDescription = "Logo"
         )
@@ -70,39 +70,34 @@ fun WelcomeContent(
 
         Spacer(modifier = Modifier.height(50.dp))
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp)
-        ) {
-            Text(
-                text = "Vive tu pasión gaming en compañía de amigos",
-                color = Color.Black,
-                fontFamily = Orbitron_Medium,
-                fontSize = 20.sp
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = "Escribe reseñas sobre juegos y encuentra artículos con opiniones de otros gamers.",
-                color = Color.Black,
-                fontFamily = Inter_Regular,
-                fontSize = 14.sp
-            )
+        Text(
+            text = "Vive tu pasión gaming en compañía de amigos",
+            color = Color.Black,
+            fontFamily = Orbitron_Medium,
+            fontSize = 18.sp
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(
+            text = "Escribe reseñas sobre juegos y encuentra artículos con opiniones de otros gamers.",
+            color = Color.Black,
+            fontFamily = Inter_Regular,
+            fontSize = 14.sp
+        )
 
-            Spacer(modifier = Modifier.height(100.dp))
+        Spacer(modifier = Modifier.height(100.dp))
 
-            LoginButton(
-                onClick = {
-                    navHostController.navigate(route = AuthScreen.Login.route)
-                }
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            CreateAccountButton(
-                onClick = {
-                    navHostController.navigate(route = AuthScreen.Signup.route)
-                }
-            )
-        }
+        LoginButton(
+            text = "Iniciar sesión",
+            onClick = {
+                navHostController.navigate(route = AuthScreen.Login.route)
+            }
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        CreateAccountButton(
+            onClick = {
+                navHostController.navigate(route = AuthScreen.Signup.route)
+            }
+        )
     }
 
 }

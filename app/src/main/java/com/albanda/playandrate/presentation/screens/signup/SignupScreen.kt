@@ -2,6 +2,7 @@ package com.albanda.playandrate.presentation.screens.signup
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -10,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.albanda.playandrate.presentation.components.DefaultTopBar
+import com.albanda.playandrate.presentation.components.TopBar
 import com.albanda.playandrate.presentation.screens.signup.components.SignUp
 import com.albanda.playandrate.presentation.screens.signup.components.SignupContent
 import com.albanda.playandrate.presentation.ui.theme.PlayAndRateTheme
@@ -20,14 +21,14 @@ import com.albanda.playandrate.presentation.ui.theme.PlayAndRateTheme
 fun SignupScreen(navHostController: NavHostController) {
     Scaffold(
         topBar = {
-            DefaultTopBar(
-                title = "Nuevo usuario",
+            TopBar(
+                title = null,
                 upAvailable = true,
                 navHostController = navHostController
             )
         },
-        content = {
-            SignupContent()
+        content = { innerPadding ->
+            SignupContent(modifier = Modifier.padding(innerPadding))
         },
         bottomBar = {}
     )
