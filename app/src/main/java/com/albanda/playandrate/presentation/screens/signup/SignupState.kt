@@ -2,6 +2,7 @@ package com.albanda.playandrate.presentation.screens.signup
 
 data class SignupState(
     val username: String = "",
+    val alias: String = "",
     val email: String = "",
     val password: String = "",
     val confirmPassword: String = "",

@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets
 data class User(
     var id: String = "",
     var username: String = "",
+    var alias: String = "",
     var image: String = "",
     var email: String = "",
     var password: String = ""
@@ -15,6 +16,7 @@ data class User(
         User(
             id,
             username,
+            alias,
             if (image != "") URLEncoder.encode(image, StandardCharsets.UTF_8.toString()) else "",
             email,
             password

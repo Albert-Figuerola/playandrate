@@ -31,6 +31,8 @@ fun CameraPermissionHandler() {
         if (!granted) {
             Toast.makeText(context, "La aplicación necesita acceso a la cámara", Toast.LENGTH_LONG)
                 .show()
+        } else {
+            Toast.makeText(context, "Permiso concedido", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -38,9 +40,5 @@ fun CameraPermissionHandler() {
         if (!hasPermission.value) {
             permissionLauncher.launch(Manifest.permission.CAMERA)
         }
-    }
-
-    if (hasPermission.value) {
-        Toast.makeText(context, "Permiso concedido", Toast.LENGTH_SHORT).show()
     }
 }
