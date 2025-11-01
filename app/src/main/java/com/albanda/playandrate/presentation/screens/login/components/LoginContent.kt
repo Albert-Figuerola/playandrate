@@ -89,7 +89,7 @@ fun LoginContent(
             label = "Contraseña*",
             trailingIcon = trailing,
             hideText = hideText,
-            keyboardType = KeyboardType.Email,
+            keyboardType = KeyboardType.Password,
             errorMsg = loginViewModel.passwordErrMsg,
             validateField = {
                 loginViewModel.validatePassword()

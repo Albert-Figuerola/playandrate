@@ -208,7 +208,7 @@ fun SignupContent(
             label = "Repetir contraseña*",
             trailingIcon = trailingPass,
             hideText = hideTextPass,
-            keyboardType = KeyboardType.Email,
+            keyboardType = KeyboardType.Password,
             errorMsg = signupViewModel.confirmPasswordErrMsg,
             validateField = { signupViewModel.validateConfirmPassword() }
         )
