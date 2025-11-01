@@ -6,6 +6,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.albanda.playandrate.presentation.ui.theme.Orange500
 
 @Composable
 fun ProgressBar() {
@@ -13,6 +14,6 @@ fun ProgressBar() {
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
-        CircularProgressIndicator()
+        CircularProgressIndicator(color = Orange500)
     }
 }

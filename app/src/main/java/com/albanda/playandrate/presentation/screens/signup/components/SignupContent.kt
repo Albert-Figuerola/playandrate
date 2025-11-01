@@ -51,6 +51,7 @@ fun SignupContent(
     signupViewModel: SignupViewModel = hiltViewModel()
 ) {
     val state = signupViewModel.state
+
     signupViewModel.resultingActivityHandler.handle()
     val dialogState = remember { mutableStateOf(false) }
 
@@ -111,27 +112,23 @@ fun SignupContent(
         TextFiled(
             modifier = Modifier
                 .fillMaxWidth(),
-            value = "",
-            onValueChange = {  },
+            value = state.username,
+            onValueChange = { signupViewModel.onUsernameInput(it)  },
             label = "Nombre y apellido*",
             keyboardType = KeyboardType.Email,
-            errorMsg = "",
-            validateField = {
-
-            }
+            errorMsg = signupViewModel.usernameErrMsg,
+            validateField = { signupViewModel.validateUsername() }
         )
 
         TextFiled(
             modifier = Modifier
                 .fillMaxWidth(),
-            value = "",
-            onValueChange = {  },
+            value = state.alias,
+            onValueChange = { signupViewModel.onAliasInput(it)  },
             label = "Alias*",
             keyboardType = KeyboardType.Email,
-            errorMsg = "",
-            validateField = {
-
-            }
+            errorMsg = signupViewModel.aliasErrMsg,
+            validateField = { signupViewModel.validateAlias() }
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -148,12 +145,12 @@ fun SignupContent(
         TextFiled(
             modifier = Modifier
                 .fillMaxWidth(),
-            value = "",
-            onValueChange = {  },
+            value = state.email,
+            onValueChange = { signupViewModel.onEmailInput(it)  },
             label = "email*",
             keyboardType = KeyboardType.Email,
-            errorMsg = "",
-            validateField = { }
+            errorMsg = signupViewModel.emailErrMsg,
+            validateField = { signupViewModel.validateEmail() }
         )
 
         var hideText by remember { mutableStateOf(true) }
@@ -176,27 +173,25 @@ fun SignupContent(
         PasswordTextFiled(
             modifier = Modifier
                 .fillMaxWidth(),
-            value = "",
-            onValueChange = {  },
+            value = state.password,
+            onValueChange = { signupViewModel.onPasswordInput(it)  },
             label = "Contraseña*",
             trailingIcon = trailing,
             hideText = hideText,
-            keyboardType = KeyboardType.Email,
-            errorMsg = "",
-            validateField = {
-
-            }
+            keyboardType = KeyboardType.Password,
+            errorMsg = signupViewModel.passwordErrMsg,
+            validateField = { signupViewModel.validatePassword() }
         )
 
         var hideTextPass by remember { mutableStateOf(true) }
         val trailingPass: @Composable () -> Unit = {
-            val image = if (hideText) {
+            val image = if (hideTextPass) {
                 R.drawable.visibility_off
             } else {
                 R.drawable.visibility
             }
 
-            IconButton(onClick = { hideText = !hideText }) {
+            IconButton(onClick = { hideTextPass = !hideTextPass }) {
                 Icon(
                     painter = painterResource(id = image),
                     contentDescription = "",
@@ -208,16 +203,14 @@ fun SignupContent(
         PasswordRepeatTextFiled(
             modifier = Modifier
                 .fillMaxWidth(),
-            value = "",
-            onValueChange = {  },
+            value = state.confirmPassword,
+            onValueChange = { signupViewModel.onConfirmPasswordInput(it)  },
             label = "Repetir contraseña*",
             trailingIcon = trailingPass,
             hideText = hideTextPass,
             keyboardType = KeyboardType.Email,
-            errorMsg = "",
-            validateField = {
-
-            }
+            errorMsg = signupViewModel.confirmPasswordErrMsg,
+            validateField = { signupViewModel.validateConfirmPassword() }
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -234,12 +227,9 @@ fun SignupContent(
         LoginButton(
             text = "Crear cuenta",
             onClick = {
-
+                signupViewModel.onSignup()
             }
         )
-
-//            CardForm()
-
     }
 
 }

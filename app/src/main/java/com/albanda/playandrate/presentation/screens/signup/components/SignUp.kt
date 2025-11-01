@@ -17,7 +17,7 @@ fun SignUp(
     navHostController: NavHostController,
     signupViewModel: SignupViewModel = hiltViewModel()
 ) {
-    when (val signupResponse = signupViewModel.signupResponse) {
+    when (val signupResponse = signupViewModel.updateUserImage) {
         Response.Loading -> {
             Log.i("CardForm", "Loading")
             ProgressBar()
@@ -25,7 +25,6 @@ fun SignUp(
 
         is Response.Success<*> -> {
             LaunchedEffect(Unit) {
-                signupViewModel.createUser()
                 navHostController.popBackStack(Graph.AUTHENTICATION, inclusive = true)
                 navHostController.navigate(route = Graph.HOME)
             }
