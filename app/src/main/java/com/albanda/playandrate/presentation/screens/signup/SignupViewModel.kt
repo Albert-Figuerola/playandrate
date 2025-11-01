@@ -1,6 +1,7 @@
 package com.albanda.playandrate.presentation.screens.signup
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,6 +18,8 @@ import com.albanda.playandrate.presentation.utils.ResultingActivityHandler
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import id.zelory.compressor.Compressor
+import id.zelory.compressor.constraint.default
 import jakarta.inject.Inject
 import kotlinx.coroutines.launch
 import java.io.File
@@ -180,17 +183,30 @@ class SignupViewModel @Inject constructor(
         }
 
         saveImageResponse = Response.Loading
-        val result = userUseCases.saveImage(file!!)
-        saveImageResponse = result
 
-        return when (result) {
-            is Response.Success -> result.data
-            is Response.Failure -> {
-                Log.e("Signup", "Error subiendo imagen: ${result.exception}")
-                null
+        return try {
+            val compressedFile = Compressor.compress(context, file!!) {
+                default(width = 800, format = Bitmap.CompressFormat.JPEG, quality = 70)
             }
 
-            else -> null
+            Log.i("Signup", "Imagen comprimida: ${compressedFile.length() / 1024} KB")
+
+            // 🔹 Subir la imagen comprimida
+            val result = userUseCases.saveImage(compressedFile)
+            saveImageResponse = result
+
+            when (result) {
+                is Response.Success -> result.data
+                is Response.Failure -> {
+                    Log.e("Signup", "Error subiendo imagen: ${result.exception}")
+                    null
+                }
+                else -> null
+            }
+        } catch (e: Exception) {
+            Log.e("Signup", "Error al comprimir/subir imagen: ${e.message}")
+            e.printStackTrace()
+            null
         }
     }
 

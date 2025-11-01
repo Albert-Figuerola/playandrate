@@ -23,9 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.albanda.playandrate.presentation.ui.theme.Orange500
-import com.albanda.playandrate.presentation.ui.theme.Orbitron_Medium
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Regular
-import com.albanda.playandrate.presentation.ui.theme.Red500
 
 @Composable
 fun DialogCapturePicture(
@@ -53,7 +51,8 @@ fun DialogCapturePicture(
                     Text(
                         text = "Selecciona una opción",
                         fontSize = 16.sp,
-                        color = Color.Black
+                        color = Color.Black,
+                        fontFamily = Orbitron_Regular
                     )
                     Spacer(modifier = Modifier.height(10.dp))
                     Row(
