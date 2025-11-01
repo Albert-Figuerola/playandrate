@@ -191,7 +191,6 @@ class SignupViewModel @Inject constructor(
 
             Log.i("Signup", "Imagen comprimida: ${compressedFile.length() / 1024} KB")
 
-            // 🔹 Subir la imagen comprimida
             val result = userUseCases.saveImage(compressedFile)
             saveImageResponse = result
 
