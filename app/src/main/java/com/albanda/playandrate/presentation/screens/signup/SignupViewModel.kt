@@ -58,9 +58,6 @@ class SignupViewModel @Inject constructor(
     var saveImageResponse by mutableStateOf<Response<String>?>(null)
         private set
 
-    var updateUserImage by mutableStateOf<Response<Boolean>?>(null)
-        private set
-
     var file: File? = null
     val resultingActivityHandler = ResultingActivityHandler()
 
@@ -158,40 +155,22 @@ class SignupViewModel @Inject constructor(
         signup(user)
     }
 
-    fun signup(user: User) {
-        updateUserImage = Response.Loading
-//        signupResponse = Response.Loading
+    fun signup(user: User) = viewModelScope.launch {
+        signupResponse = Response.Loading
+        val authResult = authUseCases.signup(user)
 
-        viewModelScope.launch {
-            val result = authUseCases.signup(user)
-            signupResponse = result
+        if (authResult is Response.Success) {
+            try {
+                val imageUrl = saveImage()
 
-            if (result is Response.Success) {
-                try {
-                    createUser() // 1️⃣ Crea documento en Firestore
-                    val imageUrl = saveImage() // 2️⃣ Sube imagen y devuelve URL
-                    if (imageUrl != null) {
+                createUser(user, imageUrl)
 
-                        val test = updateUserImage(imageUrl) // 3️⃣ Actualiza Firestore con la URL
-                        updateUserImage = test
-                    }
-                } catch (e: Exception) {
-                    Log.e("Signup", "Error en flujo de registro: ${e.message}")
-                }
-            } else if (result is Response.Failure) {
-                Log.e("Signup", "Error creando usuario: ${result.exception}")
+                signupResponse = authResult
+            } catch (e: Exception) {
+                Log.e("Signup", "Error en flujo de registro: ${e.message}")
+                signupResponse = Response.Failure(e)
             }
         }
-    }
-
-    suspend fun createUser() {
-        user.id = authUseCases.getCurrentUser()!!.uid
-        user.username = state.username
-        user.alias = state.alias
-        user.email = state.email
-        user.password = ""
-
-        userUseCases.createUser(user)
     }
 
     suspend fun saveImage(): String? {
@@ -205,31 +184,25 @@ class SignupViewModel @Inject constructor(
         saveImageResponse = result
 
         return when (result) {
-            is Response.Success -> result.data // ✅ Devuelve la URL
+            is Response.Success -> result.data
             is Response.Failure -> {
                 Log.e("Signup", "Error subiendo imagen: ${result.exception}")
                 null
             }
+
             else -> null
         }
     }
 
-    suspend fun updateUserImage(url: String): Response<Boolean> {
-        val myUser = User(
-            id = user.id,
-            username = state.username,
-            alias = state.alias,
-            email = state.email,
-            image = url
-        )
+    suspend fun createUser(user: User, imageUrl: String?) {
+        user.id = authUseCases.getCurrentUser()!!.uid
+        user.username = state.username
+        user.alias = state.alias
+        user.email = state.email
+        user.password = ""
+        user.image = imageUrl ?: ""
 
-        return try {
-            userUseCases.updateUser(myUser)
-        } catch (e: Exception) {
-            Log.e("Signup", "Error subiendo imagen: ${e.message}")
-            Response.Failure(e)
-        }
+        userUseCases.createUser(user)
     }
-
 
 }

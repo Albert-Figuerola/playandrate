@@ -88,6 +88,9 @@ dependencies {
     // Add to change automatically the status bar color
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.36.0")
 
+    // Add to compress images
+    implementation(libs.compressor)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -17,7 +17,7 @@ fun SignUp(
     navHostController: NavHostController,
     signupViewModel: SignupViewModel = hiltViewModel()
 ) {
-    when (val signupResponse = signupViewModel.updateUserImage) {
+    when (val signupResponse = signupViewModel.signupResponse) {
         Response.Loading -> {
             Log.i("CardForm", "Loading")
             ProgressBar()
