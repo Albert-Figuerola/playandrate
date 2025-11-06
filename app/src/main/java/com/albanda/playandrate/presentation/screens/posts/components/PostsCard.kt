@@ -53,7 +53,6 @@ fun PostsCard(
             .clickable {
                 navHostController.navigate(route = DetailsScreen.DetailPost.passPost(post.toJson()))
             },
-//        elevation = CardDefaults.cardElevation(4.dp),
         colors = CardDefaults.cardColors(containerColor = GrayCard),
         shape = RoundedCornerShape(20.dp)
     ) {
@@ -125,7 +124,11 @@ fun PostsCard(
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                for (i in 0..3) {
+                val stars = 5
+                val score = post.score
+                val emptyStars = stars - post.score
+
+                repeat(score) {
                     Image(
                         modifier = Modifier
                             .size(20.dp),
@@ -133,12 +136,16 @@ fun PostsCard(
                         contentDescription = "Like icon",
                     )
                 }
-                Image(
-                    modifier = Modifier
-                        .size(20.dp),
-                    painter = painterResource(id = R.drawable.icon_star_orange),
-                    contentDescription = "Like icon",
-                )
+
+                repeat(emptyStars) {
+                    Image(
+                        modifier = Modifier
+                            .size(20.dp),
+                        painter = painterResource(id = R.drawable.icon_star_orange),
+                        contentDescription = "Like icon",
+                    )
+                }
+
 
                 Spacer(modifier = Modifier.weight(1f))
 

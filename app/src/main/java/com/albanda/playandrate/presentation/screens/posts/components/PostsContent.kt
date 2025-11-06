@@ -2,10 +2,7 @@ package com.albanda.playandrate.presentation.screens.posts.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -21,7 +18,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.albanda.playandrate.R
 import com.albanda.playandrate.domain.model.Post
-import com.albanda.playandrate.presentation.screens.welcome.components.WelcomeContent
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Medium
 
 @Composable
@@ -39,7 +35,7 @@ fun PostsContent(
     ) {
         Image(
             modifier = Modifier
-                .padding(top = 30.dp, bottom = 20.dp),
+                .padding(bottom = 20.dp),
             painter = painterResource(id = R.drawable.play_and_rate_logo),
             contentDescription = "Logo"
         )

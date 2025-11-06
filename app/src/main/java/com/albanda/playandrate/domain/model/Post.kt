@@ -14,6 +14,7 @@ data class Post(
     var image: String = "",
     var userId: String = "",
     var user: User? = null,
+    var score: Int = 0,
     var likes: ArrayList<String> = ArrayList(),
     var createdAt: String = LocalDateTime.now()
         .format(DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm"))
@@ -32,6 +33,7 @@ data class Post(
                 image = if (!user?.image.isNullOrBlank()) URLEncoder.encode(user?.image, StandardCharsets.UTF_8.toString()) else "",
                 email = user?.email ?: ""
             ),
+            score,
             likes,
             createdAt
         )
