@@ -67,9 +67,9 @@ fun LoginContent(
         var hideText by remember { mutableStateOf(true) }
         val trailing: @Composable () -> Unit = {
             val image = if (hideText) {
-                R.drawable.visibility_off
+                R.drawable.icon_eye_closed
             } else {
-                R.drawable.visibility
+                R.drawable.icon_eye_open
             }
 
             IconButton(onClick = { hideText = !hideText }) {
