@@ -12,7 +12,10 @@ val Pink40 = Color(0xFF7D5260)
 
 // New colors
 val White = Color(0xFFFFFFFF)
+val BackgroundWhite = Color(0xFFECECEE)
+
 val Orange500 = Color(0xFFFF5A1F)
+val GrayCard = Color(0xFFD8D9DD)
 
 // OLD Added
 val Red200 = Color(0xFFff6f60)
