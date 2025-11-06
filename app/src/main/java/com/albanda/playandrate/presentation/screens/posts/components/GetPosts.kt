@@ -2,6 +2,7 @@ package com.albanda.playandrate.presentation.screens.posts.components
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -12,6 +13,7 @@ import com.albanda.playandrate.presentation.screens.posts.GetPostsViewModel
 
 @Composable
 fun GetPosts(
+    modifier: Modifier = Modifier,
     navHostController: NavHostController,
     getPostsViewModel: GetPostsViewModel = hiltViewModel()
 ) {
@@ -21,7 +23,7 @@ fun GetPosts(
         }
 
         is Response.Success<*> -> {
-            PostsContent(navHostController, posts = response.data as List<Post>)
+            PostsContent(modifier, navHostController, posts = response.data as List<Post>)
         }
 
         is Response.Failure<*> -> {
