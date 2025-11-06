@@ -156,9 +156,9 @@ fun SignupContent(
         var hideText by remember { mutableStateOf(true) }
         val trailing: @Composable () -> Unit = {
             val image = if (hideText) {
-                R.drawable.visibility_off
+                R.drawable.icon_eye_closed
             } else {
-                R.drawable.visibility
+                R.drawable.icon_eye_open
             }
 
             IconButton(onClick = { hideText = !hideText }) {
@@ -186,9 +186,9 @@ fun SignupContent(
         var hideTextPass by remember { mutableStateOf(true) }
         val trailingPass: @Composable () -> Unit = {
             val image = if (hideTextPass) {
-                R.drawable.visibility_off
+                R.drawable.icon_eye_closed
             } else {
-                R.drawable.visibility
+                R.drawable.icon_eye_open
             }
 
             IconButton(onClick = { hideTextPass = !hideTextPass }) {
