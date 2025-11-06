@@ -38,7 +38,6 @@ fun MyPostsCard(
     myPostsViewModel: MyPostsViewModel = hiltViewModel(),
     post: Post
 ) {
-
     Card(
         modifier = Modifier
             .padding(top = 12.dp)

@@ -3,6 +3,8 @@ package com.albanda.playandrate.domain.model
 import com.google.gson.Gson
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 data class Post(
     var id: String = "",
@@ -12,7 +14,9 @@ data class Post(
     var image: String = "",
     var userId: String = "",
     var user: User? = null,
-    var likes: ArrayList<String> = ArrayList()
+    var likes: ArrayList<String> = ArrayList(),
+    var createdAt: String = LocalDateTime.now()
+        .format(DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm"))
 ) {
     fun toJson(): String = Gson().toJson(
         Post(
@@ -28,7 +32,8 @@ data class Post(
                 image = if (!user?.image.isNullOrBlank()) URLEncoder.encode(user?.image, StandardCharsets.UTF_8.toString()) else "",
                 email = user?.email ?: ""
             ),
-            likes
+            likes,
+            createdAt
         )
     )
 
