@@ -13,30 +13,33 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.albanda.playandrate.R
 import com.albanda.playandrate.domain.model.Post
+import com.albanda.playandrate.presentation.screens.welcome.components.WelcomeContent
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Medium
 
 @Composable
 fun PostsContent(
+    modifier: Modifier = Modifier,
     navHostController: NavHostController,
     posts: List<Post>
 ) {
     val postsCount = posts.size
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .padding(16.dp)
-//            .fillMaxWidth()
-            .fillMaxSize()
+            .fillMaxWidth()
     ) {
         Image(
             modifier = Modifier
-                .height(140.dp),
+                .padding(top = 30.dp, bottom = 20.dp),
             painter = painterResource(id = R.drawable.play_and_rate_logo),
             contentDescription = "Logo"
         )
@@ -48,11 +51,8 @@ fun PostsContent(
             fontSize = 18.sp
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
-
         LazyColumn(
             modifier = Modifier.fillMaxWidth()
-                .weight(1f)
         ) {
             items(
                 items = posts
@@ -60,5 +60,17 @@ fun PostsContent(
                 PostsCard(navHostController = navHostController, post = post)
             }
         }
+
     }
+
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun PreviewPostsContent() {
+    PostsContent(
+        modifier = Modifier,
+        navHostController = NavHostController(LocalContext.current),
+        listOf()
+    )
 }
