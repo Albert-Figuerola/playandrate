@@ -53,24 +53,24 @@ fun HomeBottomBarNavGraph(navHostController: NavHostController) {
 
 }
 
-sealed class HomeBottomBarScreen (
+sealed class HomeBottomBarScreen(
     val route: String,
     val title: String,
     val icon: ImageVector
 ) {
-    object Posts: HomeBottomBarScreen(
+    object Posts : HomeBottomBarScreen(
         route = "posts",
         title = "Posts",
         icon = Icons.AutoMirrored.Filled.List
     )
 
-    object MyPosts: HomeBottomBarScreen(
+    object MyPosts : HomeBottomBarScreen(
         route = "my_posts",
         title = "My posts",
         icon = Icons.AutoMirrored.Filled.List
     )
 
-    object Profile: HomeBottomBarScreen(
+    object Profile : HomeBottomBarScreen(
         route = "profile",
         title = "Profile",
         icon = Icons.Default.Person
