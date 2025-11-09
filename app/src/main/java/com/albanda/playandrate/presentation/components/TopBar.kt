@@ -51,6 +51,6 @@ fun TopBar(
 @Preview(showBackground = true)
 @Composable
 fun PreviewTopBar() {
-    TopBar(title = "Preview", upAvailable = true)
+    TopBar(title = "Preview", upAvailable = true,)
 }
 
