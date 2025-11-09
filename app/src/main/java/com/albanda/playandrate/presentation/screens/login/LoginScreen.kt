@@ -25,7 +25,7 @@ fun LoginScreen(navHostController: NavHostController) {
             TopBar(
                 title = null,
                 upAvailable = true,
-                navHostController = navHostController
+                navHostController = navHostController,
             )
         },
         content = { innerPadding ->

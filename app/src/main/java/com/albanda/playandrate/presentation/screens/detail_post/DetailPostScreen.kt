@@ -17,8 +17,7 @@ fun DetailPostScreen(navHostController: NavHostController, post: String) {
             TopBar(
                 title = null,
                 upAvailable = true,
-                navHostController = navHostController,
-                onClick = { navHostController.popBackStack() }
+                navHostController = navHostController
             )
         },
         content = { innerPadding ->

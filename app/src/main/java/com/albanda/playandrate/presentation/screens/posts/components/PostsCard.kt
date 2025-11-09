@@ -34,7 +34,6 @@ import com.albanda.playandrate.R
 import com.albanda.playandrate.presentation.navigation.DetailsScreen
 import com.albanda.playandrate.presentation.screens.posts.GetPostsViewModel
 import com.albanda.playandrate.presentation.ui.theme.GrayCard
-import com.albanda.playandrate.presentation.ui.theme.Orbitron_Bold
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Medium
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Regular
 
@@ -106,7 +105,7 @@ fun PostsCard(
             Text(
                 modifier = Modifier.padding(horizontal = 15.dp, vertical = 10.dp),
                 text = post.name,
-                fontFamily = Orbitron_Bold,
+                fontFamily = Orbitron_Medium,
                 fontSize = 18.sp
             )
             Text(
