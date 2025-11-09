@@ -47,13 +47,14 @@ import com.albanda.playandrate.presentation.ui.theme.Red500
 
 @Composable
 fun DetailPostContent(
+    modifier: Modifier = Modifier,
     navHostController: NavHostController,
     detailPostViewModel: DetailPostViewModel = hiltViewModel()
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 35.dp)
+        modifier = modifier
+            .fillMaxSize()
+            .padding(top = 16.dp)
             .verticalScroll(rememberScrollState())
     ) {
         Box() {
@@ -202,7 +203,7 @@ fun PreviewDetailPostContentScreen() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            DetailPostContent(rememberNavController())
+            DetailPostContent(modifier = Modifier,rememberNavController())
         }
     }
 }

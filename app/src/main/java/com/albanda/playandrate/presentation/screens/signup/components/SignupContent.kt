@@ -161,7 +161,11 @@ fun SignupContent(
                 R.drawable.icon_eye_open
             }
 
-            IconButton(onClick = { hideText = !hideText }) {
+            IconButton(
+                modifier = Modifier
+                    .height(20.dp),
+                onClick = { hideText = !hideText }
+            ) {
                 Icon(
                     painter = painterResource(id = image),
                     contentDescription = "",
@@ -191,7 +195,11 @@ fun SignupContent(
                 R.drawable.icon_eye_open
             }
 
-            IconButton(onClick = { hideTextPass = !hideTextPass }) {
+            IconButton(
+                modifier = Modifier
+                    .height(20.dp),
+                onClick = { hideTextPass = !hideTextPass }
+            ) {
                 Icon(
                     painter = painterResource(id = image),
                     contentDescription = "",
