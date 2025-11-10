@@ -45,8 +45,8 @@ fun NavGraphBuilder.detailsNavGraph(navHostController: NavHostController) {
                 type = NavType.StringType
             })
         ) {
-            it.arguments?.getString("post")?.let { post ->
-                DetailPostScreen(navHostController, post = post)
+            it.arguments?.getString("post")?.let {
+                DetailPostScreen(navHostController)
             }
         }
 
