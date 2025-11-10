@@ -1,7 +1,6 @@
 package com.albanda.playandrate.presentation.screens.detail_post.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,19 +28,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import com.albanda.playandrate.R
 import com.albanda.playandrate.presentation.screens.detail_post.DetailPostViewModel
 import com.albanda.playandrate.presentation.ui.theme.Inter_Regular
 import com.albanda.playandrate.presentation.ui.theme.Orange500
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Bold
+import com.albanda.playandrate.presentation.ui.theme.Orbitron_Medium
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Regular
 
 @Composable
 fun DetailPostContent(
     modifier: Modifier = Modifier,
-    navHostController: NavHostController,
     detailPostViewModel: DetailPostViewModel = hiltViewModel()
 ) {
     Column(
@@ -61,44 +59,6 @@ fun DetailPostContent(
             )
         }
 
-//        if (!detailPostViewModel.post.user?.username.isNullOrBlank()) {
-//            Card(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(vertical = 15.dp, horizontal = 20.dp),
-//                elevation = CardDefaults.cardElevation(4.dp),
-//                shape = RoundedCornerShape(10.dp)
-//            ) {
-//                Row(
-//                    modifier = Modifier
-//                        .padding(vertical = 10.dp, horizontal = 15.dp)
-//                ) {
-//                    AsyncImage(
-//                        modifier = Modifier
-//                            .size(55.dp)
-//                            .clip(CircleShape),
-//                        model = detailPostViewModel.post.user?.image ?: "",
-//                        contentDescription = "",
-//                        contentScale = ContentScale.Crop
-//                    )
-//                    Column(
-//                        modifier = Modifier.padding(top = 3.dp, start = 10.dp)
-//                    ) {
-//                        Text(
-//                            text = detailPostViewModel.post.user?.username ?: "",
-//                            fontSize = 13.sp
-//                        )
-//                        Text(
-//                            text = detailPostViewModel.post.user?.email ?: "",
-//                            fontSize = 11.sp
-//                        )
-//                    }
-//                }
-//            }
-//        } else {
-//            Spacer(modifier = Modifier.height(15.dp))
-//        }
-
         Text(
             modifier = Modifier
                 .padding(top = 20.dp),
@@ -107,20 +67,47 @@ fun DetailPostContent(
             fontSize = 22.sp
         )
 
-        Text(
+        Row(
             modifier = Modifier
-                .padding(top = 10.dp),
-            text = detailPostViewModel.post.user?.username ?: "",
-            fontFamily = Orbitron_Bold,
-            color = Orange500,
-            fontSize = 16.sp
-        )
+                .padding(top = 10.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    text = detailPostViewModel.post.user?.alias ?: "",
+                    fontFamily = Inter_Regular,
+                    color = Orange500,
+                    fontSize = 16.sp
+                )
 
-        Text(
-            text = detailPostViewModel.post.createdAt,
-            fontFamily = Orbitron_Regular,
-            fontSize = 12.sp
-        )
+                Text(
+                    text = detailPostViewModel.post.createdAt,
+                    fontFamily = Orbitron_Regular,
+                    fontSize = 10.sp
+                )
+            }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    modifier = Modifier
+                        .size(20.dp),
+                    painter = painterResource(id = R.drawable.icon_heart_orange),
+                    contentDescription = "Like icon",
+                )
+
+                Text(
+                    modifier = Modifier.padding(start = 5.dp),
+                    text = detailPostViewModel.post.likes.size.toString(),
+                    fontFamily = Orbitron_Medium,
+                    fontSize = 14.sp
+                )
+            }
+        }
 
         Card(
             modifier = Modifier
@@ -130,8 +117,8 @@ fun DetailPostContent(
         ) {
             Row(
                 modifier = Modifier
-                    .padding(vertical = 7.dp, horizontal = 15.dp),
-                horizontalArrangement = Arrangement.Center
+                    .padding(vertical = 6.dp, horizontal = 12.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
                     modifier = Modifier.size(25.dp),
@@ -161,7 +148,7 @@ fun DetailPostContent(
                     contentDescription = ""
                 )
 
-                Spacer(modifier = Modifier.width(20.dp))
+                Spacer(modifier = Modifier.width(5.dp))
 
                 Box(
                     contentAlignment = Alignment.Center

@@ -11,7 +11,7 @@ import com.albanda.playandrate.presentation.screens.detail_post.components.Detai
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun DetailPostScreen(navHostController: NavHostController, post: String) {
+fun DetailPostScreen(navHostController: NavHostController) {
     Scaffold (
         topBar = {
             TopBar(
@@ -23,7 +23,6 @@ fun DetailPostScreen(navHostController: NavHostController, post: String) {
         content = { innerPadding ->
             DetailPostContent(modifier = Modifier
                 .padding(innerPadding)
-                , navHostController
             )
         }
     )
