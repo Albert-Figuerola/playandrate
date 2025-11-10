@@ -15,6 +15,10 @@ val White = Color(0xFFFFFFFF)
 val BackgroundWhite = Color(0xFFECECEE)
 
 val Orange500 = Color(0xFFFF5A1F)
+
+// #1F222A
+val LightBackgroundColor = Color(0xFFECECEE)
+val DarkBackgroundColor = Color(0xFF1F222A)
 val GrayCard = Color(0xFFD8D9DD)
 
 // OLD Added
