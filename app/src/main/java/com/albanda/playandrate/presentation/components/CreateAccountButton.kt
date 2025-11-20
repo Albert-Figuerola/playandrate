@@ -13,9 +13,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.albanda.playandrate.presentation.ui.theme.LightBackgroundColor
 import com.albanda.playandrate.presentation.ui.theme.Orange500
 import com.albanda.playandrate.presentation.ui.theme.Orbitron_Bold
-import com.albanda.playandrate.presentation.ui.theme.White
 
 @Composable
 fun CreateAccountButton(
@@ -25,7 +25,7 @@ fun CreateAccountButton(
         Button(
             modifier = Modifier
                 .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = White),
+            colors = ButtonDefaults.buttonColors(containerColor = LightBackgroundColor),
             shape = RoundedCornerShape(12.dp),
             border = BorderStroke(1.dp, Orange500),
             onClick = { onClick() }

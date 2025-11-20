@@ -1,31 +1,60 @@
 package com.albanda.playandrate.presentation.screens.my_posts.components
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.albanda.playandrate.R
 import com.albanda.playandrate.domain.model.Post
+import com.albanda.playandrate.presentation.ui.theme.Orbitron_Medium
 
 @Composable
 fun MyPostsContent(
+    modifier: Modifier = Modifier,
     navHostController: NavHostController,
     posts: List<Post>
 ) {
-    LazyColumn(
-        modifier = Modifier
+
+    val postsCount = posts.size
+
+    Column(
+        modifier = modifier
+            .padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 1.dp)
             .fillMaxWidth()
-            .padding(top = 20.dp)
-            .padding(bottom = 80.dp)
-            .padding(horizontal = 10.dp, vertical = 10.dp)
     ) {
-        items(
-            items = posts
-        ) { post ->
-            MyPostsCard(navHostController = navHostController, post = post)
+        Image(
+            modifier = Modifier
+                .padding(bottom = 20.dp),
+            painter = painterResource(id = R.drawable.play_and_rate_logo),
+            contentDescription = "Logo"
+        )
+
+        Text(
+            text = "Artículos $postsCount",
+            color = Color.Black,
+            fontFamily = Orbitron_Medium,
+            fontSize = 18.sp
+        )
+
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            items(
+                items = posts
+            ) { post ->
+                MyPostsCard(navHostController = navHostController, post = post)
+            }
         }
     }
+
 }

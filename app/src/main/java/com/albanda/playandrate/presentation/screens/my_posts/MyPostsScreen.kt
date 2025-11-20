@@ -18,8 +18,12 @@ import com.albanda.playandrate.presentation.screens.my_posts.components.GetPosts
 @Composable
 fun MyPostsScreen(navHostController: NavHostController) {
     Scaffold (
-        content = {
-            GetPostsByUserId(navHostController)
+        content = { innerPadding ->
+            GetPostsByUserId(
+                modifier = Modifier
+                    .padding(innerPadding),
+                navHostController
+            )
         },
         floatingActionButton = {
             FloatingActionButton(
