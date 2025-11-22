@@ -7,15 +7,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.albanda.playandrate.domain.model.Response
 import com.albanda.playandrate.domain.usecase.auth.AuthUseCases
+import com.albanda.playandrate.domain.usecase.user.UserUseCases
 import com.albanda.playandrate.presentation.screens.utils.AuthFormValidator
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
-import jakarta.inject.Inject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val authUseCases: AuthUseCases
+    private val authUseCases: AuthUseCases,
+    private val userUseCases: UserUseCases
 ): ViewModel() {
     var state by mutableStateOf(LoginState())
         private set
@@ -53,6 +55,10 @@ class LoginViewModel @Inject constructor(
     fun login() = viewModelScope.launch {
         loginResponse = Response.Loading
         val result = authUseCases.login(state.email, state.password)
+        if (result is Response.Success) {
+            val userId = result.data.uid
+            userUseCases.getUserAndSaveInRoom(userId)
+        }
         loginResponse = result
     }
 

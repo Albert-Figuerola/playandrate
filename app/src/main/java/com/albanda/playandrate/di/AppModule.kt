@@ -1,15 +1,20 @@
 package com.albanda.playandrate.di
 
+import android.app.Application
+import androidx.room.Room
 import com.albanda.playandrate.core.Constants.POSTS
 import com.albanda.playandrate.core.Constants.USERS
 import com.albanda.playandrate.data.repository.auth.AuthRepositoryImpl
 import com.albanda.playandrate.data.repository.post.PostRepositoryImpl
 import com.albanda.playandrate.data.repository.user.UserRepositoryImpl
+import com.albanda.playandrate.data.room.dao.UserDao
+import com.albanda.playandrate.data.room.database.AppDatabase
 import com.albanda.playandrate.domain.repository.AuthRepository
 import com.albanda.playandrate.domain.repository.PostRepository
 import com.albanda.playandrate.domain.repository.UserRepository
 import com.albanda.playandrate.domain.usecase.auth.AuthUseCases
 import com.albanda.playandrate.domain.usecase.auth.GetCurrentUser
+import com.albanda.playandrate.domain.usecase.user.GetUserAndSaveInRoom
 import com.albanda.playandrate.domain.usecase.auth.Login
 import com.albanda.playandrate.domain.usecase.auth.Logout
 import com.albanda.playandrate.domain.usecase.auth.Signup
@@ -22,6 +27,7 @@ import com.albanda.playandrate.domain.usecase.post.GetPostsByUserId
 import com.albanda.playandrate.domain.usecase.post.PostUseCases
 import com.albanda.playandrate.domain.usecase.post.UpdatePost
 import com.albanda.playandrate.domain.usecase.user.CreateUser
+import com.albanda.playandrate.domain.usecase.user.GetLocalUser
 import com.albanda.playandrate.domain.usecase.user.GetUserById
 import com.albanda.playandrate.domain.usecase.user.SaveImage
 import com.albanda.playandrate.domain.usecase.user.UpdateUser
@@ -38,6 +44,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Named
+import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -78,7 +85,9 @@ object AppModule {
         createUser = CreateUser(userRepository),
         getUserById = GetUserById(userRepository),
         updateUser = UpdateUser(userRepository),
-        saveImage = SaveImage(userRepository)
+        saveImage = SaveImage(userRepository),
+        getLocalUser = GetLocalUser(userRepository),
+        getUserAndSaveInRoom = GetUserAndSaveInRoom(userRepository)
     )
 
     @Provides

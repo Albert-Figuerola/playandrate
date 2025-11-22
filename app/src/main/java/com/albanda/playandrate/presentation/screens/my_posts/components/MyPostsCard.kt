@@ -45,7 +45,7 @@ fun MyPostsCard(
 ) {
 
     val currentUserId = myPostsViewModel.currentUser?.uid ?: ""
-    val userImage = post.user?.image ?: R.drawable.icon_user_man_default
+    val user = myPostsViewModel.user
 
     Card(
         modifier = Modifier
@@ -73,14 +73,14 @@ fun MyPostsCard(
                             shape = CircleShape
                         ),
                     contentScale = ContentScale.Crop,
-                    model = userImage,
+                    model = user?.image ?: "",
                     contentDescription = "User image"
                 )
 
                 Column {
                     Text(
                         modifier = Modifier.padding(start = 10.dp),
-                        text = post.user?.alias ?: "",
+                        text = user?.alias ?: "",
                         fontFamily = Orbitron_Medium,
                         fontSize = 14.sp
                     )
@@ -173,75 +173,4 @@ fun MyPostsCard(
             }
         }
     }
-
-//    Card(
-//        modifier = Modifier
-//            .padding(top = 12.dp)
-//            .clickable {
-//                navHostController.navigate(route = DetailsScreen.DetailPost.passPost(post.toJson()))
-//            },
-//        colors = CardDefaults.cardColors(containerColor = GrayCard),
-//        shape = RoundedCornerShape(20.dp)
-//    ) {
-//        Column() {
-//            AsyncImage(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(170.dp),
-//                model = post.image,
-//                contentDescription = "",
-//                contentScale = ContentScale.Crop
-//            )
-//            Text(
-//                modifier = Modifier.padding(horizontal = 15.dp, vertical = 10.dp),
-//                text = post.name,
-//                fontWeight = FontWeight.Bold
-//            )
-//            Text(
-//                modifier = Modifier.padding(horizontal = 15.dp),
-//                text = post.description,
-//                fontSize = 12.sp,
-//                maxLines = 2,
-//                overflow = TextOverflow.Ellipsis,
-//                color = Color.Gray
-//            )
-//            Row(
-//                modifier = Modifier.fillMaxWidth(),
-//                horizontalArrangement = Arrangement.SpaceBetween
-//            ) {
-//                IconButton(
-//                    onClick = { myPostsViewModel.deletePost(post.id) }
-//                ) {
-//                    Icon(
-//                        modifier = Modifier
-//                            .size(20.dp),
-//                        imageVector = Icons.Default.Delete,
-//                        tint = Color.Black,
-//                        contentDescription = "Delete button"
-//                    )
-//                }
-//                IconButton(
-//                    onClick = {
-//                        navHostController.navigate(
-//                            route = DetailsScreen.UpdatePost.passPost(post.toJson())
-//                        )
-//                    }
-//                ) {
-//                    Icon(
-//                        modifier = Modifier
-//                            .size(20.dp),
-//                        imageVector = Icons.Default.Edit,
-//                        tint = Color.Black,
-//                        contentDescription = "Edit button"
-//                    )
-//                }
-//            }
-//
-//        }
-//    }
-
-
-
-
 }
-

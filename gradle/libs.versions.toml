@@ -12,6 +12,8 @@ composeBom = "2024.09.00"
 googleGmsGoogleServices = "4.4.4"
 firebaseAuth = "24.0.1"
 
+ksp = "2.0.21-1.0.27"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 compressor = { module = "id.zelory:compressor", version.ref = "compressor" }
@@ -35,4 +37,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
-
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

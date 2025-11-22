@@ -5,8 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.albanda.playandrate.data.room.dao.UserDao
+import com.albanda.playandrate.domain.mapper.user.toUser
 import com.albanda.playandrate.domain.model.Post
 import com.albanda.playandrate.domain.model.Response
+import com.albanda.playandrate.domain.model.User
 import com.albanda.playandrate.domain.usecase.auth.AuthUseCases
 import com.albanda.playandrate.domain.usecase.post.PostUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,15 +19,24 @@ import javax.inject.Inject
 @HiltViewModel
 class MyPostsViewModel @Inject constructor(
     private val postUseCases: PostUseCases,
-    authUseCases: AuthUseCases
+    private val authUseCases: AuthUseCases,
+    private val userDao: UserDao
 ): ViewModel() {
 
     var postsResponse by mutableStateOf<Response<List<Post>>?>(null)
     var deleteResponse by mutableStateOf<Response<Boolean>?>(null)
     val currentUser = authUseCases.getCurrentUser()
 
+    var user by mutableStateOf<User?>(null)
+
     init {
         getPosts()
+        viewModelScope.launch {
+            val userEntity = userDao.getUser()
+            if (userEntity != null) {
+                user = userEntity.toUser()
+            }
+        }
     }
 
     fun deletePost(postId: String) = viewModelScope.launch {

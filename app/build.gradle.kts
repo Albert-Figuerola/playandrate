@@ -3,6 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
+    // Added for room
+    alias(libs.plugins.kotlin.ksp)
+
     // Added for DAGGER HILT
     id("com.google.dagger.hilt.android")
     kotlin("kapt")
@@ -90,6 +93,11 @@ dependencies {
 
     // Add to compress images
     implementation(libs.compressor)
+
+    // Add for room
+    implementation("androidx.room:room-runtime:2.8.3")
+    implementation("androidx.room:room-ktx:2.8.3")
+    ksp("androidx.room:room-compiler:2.8.3")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

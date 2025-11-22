@@ -15,4 +15,8 @@ interface UserRepository {
 
     fun getUserById(userId: String): Flow<User>
 
+    suspend fun saveUserInRoom(user: User)
+
+    suspend fun getLocalUser(): User?
+
 }
