@@ -2,6 +2,9 @@ package com.albanda.playandrate.data.repository.user
 
 import android.net.Uri
 import com.albanda.playandrate.core.Constants.USERS
+import com.albanda.playandrate.data.mapper.user.toUserEntity
+import com.albanda.playandrate.data.room.dao.UserDao
+import com.albanda.playandrate.domain.mapper.user.toUser
 import com.albanda.playandrate.domain.model.Response
 import com.albanda.playandrate.domain.model.User
 import com.albanda.playandrate.domain.repository.UserRepository
@@ -17,7 +20,8 @@ import javax.inject.Named
 
 class UserRepositoryImpl @Inject constructor(
     @Named(USERS) private val usersRef: CollectionReference,
-    @Named(USERS) private val storageUsersRef: StorageReference
+    @Named(USERS) private val storageUsersRef: StorageReference,
+    private val userDao: UserDao
 ): UserRepository {
 
     override suspend fun createUser(user: User): Response<Boolean> {
@@ -68,4 +72,14 @@ class UserRepositoryImpl @Inject constructor(
             snapshotListener.remove()
         }
     }
+
+    override suspend fun saveUserInRoom(user: User) {
+        val userEntity = user.toUserEntity()
+        userDao.insertUser(userEntity)
+    }
+
+    override suspend fun getLocalUser(): User? {
+        return userDao.getUser()?.toUser()
+    }
+
 }
