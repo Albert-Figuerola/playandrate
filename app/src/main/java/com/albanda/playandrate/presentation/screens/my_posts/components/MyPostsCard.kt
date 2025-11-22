@@ -13,8 +13,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -59,7 +64,8 @@ fun MyPostsCard(
         Column() {
             Row(
                 modifier = Modifier
-                    .padding(10.dp),
+                    .padding(10.dp)
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 AsyncImage(
@@ -92,6 +98,36 @@ fun MyPostsCard(
                         fontSize = 10.sp
                     )
                 }
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                IconButton(
+                    onClick = { myPostsViewModel.deletePost(post.id) }
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .size(20.dp),
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete button",
+                        tint = Color.Black
+                    )
+                }
+                IconButton(
+                    onClick = {
+                        navHostController.navigate(
+                            route = DetailsScreen.UpdatePost.passPost(post.toJson())
+                        )
+                    }
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .size(20.dp),
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "Edit button",
+                        tint = Color.Black
+                    )
+                }
+
             }
 
             AsyncImage(
@@ -117,7 +153,6 @@ fun MyPostsCard(
                 overflow = TextOverflow.Ellipsis,
                 color = Color.Gray
             )
-
             Row(
                 modifier = Modifier
                     .padding(start = 15.dp, end = 15.dp, top = 10.dp, bottom = 10.dp)

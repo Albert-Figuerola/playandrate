@@ -27,7 +27,7 @@ fun MyPostsScreen(navHostController: NavHostController) {
         },
         floatingActionButton = {
             FloatingActionButton(
-                modifier = Modifier.padding(bottom = 80.dp),
+                modifier = Modifier.padding(bottom = 10.dp),
                 onClick = { navHostController.navigate(DetailsScreen.CreatePost.route) }
             ) {
                 Icon(
