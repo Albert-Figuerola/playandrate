@@ -1,14 +1,10 @@
 package com.albanda.playandrate.di
 
-import android.app.Application
-import androidx.room.Room
 import com.albanda.playandrate.core.Constants.POSTS
 import com.albanda.playandrate.core.Constants.USERS
 import com.albanda.playandrate.data.repository.auth.AuthRepositoryImpl
 import com.albanda.playandrate.data.repository.post.PostRepositoryImpl
 import com.albanda.playandrate.data.repository.user.UserRepositoryImpl
-import com.albanda.playandrate.data.room.dao.UserDao
-import com.albanda.playandrate.data.room.database.AppDatabase
 import com.albanda.playandrate.domain.repository.AuthRepository
 import com.albanda.playandrate.domain.repository.PostRepository
 import com.albanda.playandrate.domain.repository.UserRepository
@@ -43,8 +39,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Named
-import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -112,4 +109,7 @@ object AppModule {
     @Named(POSTS)
     fun providePostsRef(db: FirebaseFirestore): CollectionReference = db.collection(POSTS)
 
+    @Provides
+    @Named("IODispatcher")
+    fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
 }
